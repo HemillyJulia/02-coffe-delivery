@@ -8,10 +8,9 @@ import { GlobalStyle } from "./styles/global"
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-  <Router/>
-   </BrowserRouter>
-   <GlobalStyle/>
-
+      <Router/>
+      </BrowserRouter>
+      <GlobalStyle/>
    </ThemeProvider>
   )
 }
