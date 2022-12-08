@@ -14,11 +14,11 @@ interface CoffeeProps{
 
 }
 
-export function CoffeeCardBox ({coffee}:CoffeeProps){
+export function CoffeeCardBox ({coffee}:{coffee:CoffeeProps}){
     const formattedPrice = formatMoney(coffee.price)
     return(
         <CoffeeCardStyle>
-          <img src={`/coffees/${coffee.photo}`}/>  
+          <img src={coffee.photo}/>  
           <Tags>
             {coffee.tags.map((tag) =>(
                 <span key={`${coffee.id} ${tag}`}>{tag}</span>
