@@ -1,9 +1,13 @@
 import { Minus,Plus } from "phosphor-react";
 import { IconWrapperSomSub, QuantidadeInputBox } from "./stlyles";
 
-export function QuantidadeInput (){
+interface QuantidadeInputProps{
+   size?: "medium" | "small";
+}
+
+export function QuantidadeInput ({size = "medium"}: QuantidadeInputProps){
     return(
-       <QuantidadeInputBox> 
+       <QuantidadeInputBox size={size} >
         <IconWrapperSomSub>
            <Minus size={14} weight="fill"/>
         </IconWrapperSomSub>

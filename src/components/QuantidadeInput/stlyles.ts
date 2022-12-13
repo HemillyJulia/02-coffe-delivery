@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const QuantidadeInputBox = styled.div`
+interface QuantidadeInputBoxProps{
+    size?: "medium" | "small";
+ }
+
+export const QuantidadeInputBox = styled.div<QuantidadeInputBoxProps>`
 flex:1;
 background:${({theme}) => theme.colors["base-button"]};
 display: flex;
@@ -8,7 +12,7 @@ align-items:center;
 justify-content:space-between;
 gap:4px;
 border-radius:6px;
-padding:0.5rem;
+
 
 input{
     text-align:center;
@@ -21,7 +25,19 @@ input{
         outline:none;
     }
 }
+
+//abaixo eu criei uma variação de tamanho para o meu input:
+//Se o size for medio, então coloca o seguinte css, se não, coloca o seguinte padding
+${({size}) => size === "medium" && 
+css`
+padding:0.5rem;
+`}
+${({size}) => size === "small" && 
+css`
+padding: 0.3rem 0.5rem;
+`}
 `;
+
 export const IconWrapperSomSub = styled.button.attrs({
     type:"button"
 })`
