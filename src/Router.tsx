@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Components/Home'
 import {  CompleteOrder } from './pages/Components/CompletteOrder' 
-import { Sucess } from './pages/Sucess'
+import { OrderConfirmed } from './pages/Components/OrderCompleted'
 import { DefaultLayout } from './layouts/DefaultLayout'
 
 export function Router() {
@@ -10,7 +10,7 @@ export function Router() {
     <Route path='/' element={<DefaultLayout/>}>
         <Route path="/" element={<Home />} />
         <Route path="/completeOrder"element={<CompleteOrder/>} />
-        <Route path="/sucess" element={<Sucess/>} />
+        <Route path="/orderconfirmed" element={<OrderConfirmed/>} />
     </Route>
     </Routes>
   )
