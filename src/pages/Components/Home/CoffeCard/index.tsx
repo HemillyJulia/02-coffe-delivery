@@ -31,7 +31,7 @@ export function CoffeeCardBox ({coffee}:{coffee:CoffeeProps}){
   function handleAddToCart (){
     const coffeeToAdd = {
       ...coffee,
-      quantity:1
+      quantity
     }
     addCoffeeNoCarrinho (coffeeToAdd)
   }
