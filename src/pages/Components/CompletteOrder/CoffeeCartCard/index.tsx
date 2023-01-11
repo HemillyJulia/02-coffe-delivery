@@ -3,14 +3,22 @@ import coffeeexpresso from '../../../../assets/coffeeexpresso.png'
 import { RegularText } from "../../../../components/Tipografias";
 import { QuantidadeInput } from "../../../../components/QuantidadeInput";
 import { Trash } from "phosphor-react";
+import { CartItem } from "../../../../contexts/CartContext";
+import { formatMoney } from "../../../../utilitário/formatMoney";
 
-export function CoffeeCartCard (){
+interface CoffeCartCardProps{
+   coffee: CartItem 
+}
+
+export function CoffeeCartCard ({coffee}:CoffeCartCardProps){
+    const coffeeTotal = coffee.price * coffee.quantity
+    const formatandoPreço = formatMoney (coffeeTotal)
     return(
         <CoffeeCartCardBox>
             <div>
-                <img src={coffeeexpresso}/>
+                <img src={`/coffees/${coffee.photo}`}/>
                 <div>
-                    <RegularText color="subtitle">Expresso Tradicional</RegularText>
+                    <RegularText color="subtitle">{coffee.name}</RegularText>
                     <ActionsBox>
                         <QuantidadeInput size="small"/>
                         <RemoveButton> 
@@ -21,7 +29,7 @@ export function CoffeeCartCard (){
                 </div>
 
             </div>
-            <p> R$ 9,90</p>
+            <p>{formatandoPreço}</p>
         </CoffeeCartCardBox>
     )
 }
