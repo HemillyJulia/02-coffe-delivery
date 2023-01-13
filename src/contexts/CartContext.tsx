@@ -10,6 +10,7 @@ export interface CartItem extends CoffeeProps {
 interface CartContextType{
     cartItens: CartItem[];
     cartQuantity:number;
+    cartItensTotal:number
     addCoffeeNoCarrinho: (coffee:CartItem) => void;
     mudarQuantidadeItemDoCarrinho:(cartItemId:number, type:'onAumentar' | 'onDiminuir') => void;
     removeCartItem: (cartItemId:number) => void;
@@ -24,6 +25,12 @@ export function CartContextProvider ({children}:CartContextProviderProps){
     const [cartItens, setCartItens] = useState<CartItem []>([])
 
     const cartQuantity = cartItens.length
+
+        // O reduce abaixo iá funcionar da seguinte maneira: Vai receber uma função que contém dois parãmetros
+        // o total e o item atual ... A minha soma irá começar em 0
+    const cartItensTotal = cartItens.reduce((total, cartItem) => {
+        return total + cartItem.price * cartItem.quantity
+    }, 0)
 
     function addCoffeeNoCarrinho (coffee:CartItem){
         const coffeeexistentenocarrinho = cartItens.findIndex(
@@ -66,7 +73,13 @@ export function CartContextProvider ({children}:CartContextProviderProps){
     setCartItens (newCart)
 }
     return(
-        <CartContext.Provider value={{cartItens,cartQuantity, addCoffeeNoCarrinho, mudarQuantidadeItemDoCarrinho,removeCartItem}}>
+        <CartContext.Provider value={{
+            cartItens,
+            cartQuantity, 
+            cartItensTotal,
+            addCoffeeNoCarrinho,
+             mudarQuantidadeItemDoCarrinho,
+             removeCartItem}}>
             {children}
         </CartContext.Provider>
     )}
