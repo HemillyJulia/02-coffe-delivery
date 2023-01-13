@@ -12,13 +12,16 @@ interface CoffeCartCardProps{
 }
 
 export function CoffeeCartCard ({coffee}:CoffeCartCardProps){
-    const { mudarQuantidadeItemDoCarrinho} = useCart()
+    const { mudarQuantidadeItemDoCarrinho,removeCartItem} = useCart()
 
     function Aumentar (){
         mudarQuantidadeItemDoCarrinho (coffee.id, 'onAumentar') 
     }
     function Diminuir (){
         mudarQuantidadeItemDoCarrinho (coffee.id, 'onDiminuir') 
+    }
+    function Remover (){
+        removeCartItem (coffee.id)
     }
     const coffeeTotal = coffee.price * coffee.quantity
     const formatandoPreço = formatMoney (coffeeTotal)
@@ -33,7 +36,7 @@ export function CoffeeCartCard ({coffee}:CoffeCartCardProps){
                         onAumentar={Aumentar}
                         onDiminuir={Diminuir}
                         quantity={coffee.quantity}/>
-                        <RemoveButton> 
+                        <RemoveButton onClick={Remover}> 
                             <Trash size={16}/>
                             REMOVER
                         </RemoveButton>
