@@ -27,7 +27,7 @@ export function ConfirmationSection (){
             <RegularText weight="700" color="subtitle" size="l">Total</RegularText>
             <RegularText weight="700" color="subtitle" size="l">{formattedCartTotal}</RegularText>
         </div>
-        <Button text="Confirmar pedido" disabled={cartQuantity <= 0}/>
+        <Button text="Confirmar pedido" disabled={cartQuantity <= 0} type="submit"/>
     
     </ConfirmationSectionBox>
     )
