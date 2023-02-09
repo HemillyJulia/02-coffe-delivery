@@ -5,9 +5,27 @@ import { MapPin, Clock, CurrencyDollar } from "phosphor-react";
 import { InfoComIconBox } from "../../../components/IconesBeneficios/style";
 import { useTheme } from "styled-components";
 import { IconesBeneficios } from "../../../components/IconesBeneficios";
+import { useLocation, useNavigate } from "react-router-dom";
+import { OrderData } from "../CompletteOrder";
+import { paymentMethods } from "../CompletteOrder/PaymentOptions";
+import { useEffect } from "react";
+
+interface LocationType {
+  state:OrderData
+}
 
 export function OrderConfirmed (){
   const {colors} = useTheme()
+
+  const {state} = useLocation() as unknown as LocationType
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(!state){
+      navigate("/")
+    }
+  },[])
+  if (!state) return <></>
+  console.log(state)
     return (
        <OrderConfirmedBox className="container">
         <div>
@@ -23,9 +41,9 @@ export function OrderConfirmed (){
           iconBg={colors["brand-purple"]}
           text={
             <RegularText>
-              Entrega em <strong>Rua João Daniel Martinelli,102</strong>
+              Entrega em <strong>{state.street}, {state.number}</strong>
               <br/>
-              Farrapos - Porto Alegre, RS
+              {state.district} - {state.city}, {state.uf}
             </RegularText>
           }
           />
@@ -46,7 +64,7 @@ export function OrderConfirmed (){
           text={
             <RegularText>
             Pagamento na entrega
-            <strong>Cartão de crédito</strong>
+            <strong>{paymentMethods[state.paymentMethod].label}</strong>
             </RegularText>
           }
           />

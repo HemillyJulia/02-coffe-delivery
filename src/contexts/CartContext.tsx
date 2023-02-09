@@ -14,6 +14,7 @@ interface CartContextType{
     addCoffeeNoCarrinho: (coffee:CartItem) => void;
     mudarQuantidadeItemDoCarrinho:(cartItemId:number, type:'onAumentar' | 'onDiminuir') => void;
     removeCartItem: (cartItemId:number) => void;
+    cleanCart: () => void
 }
 
 interface CartContextProviderProps {
@@ -53,6 +54,9 @@ export function CartContextProvider ({children}:CartContextProviderProps){
 
         setCartItens (newCart)
     }
+    function cleanCart(){
+        setCartItens([])
+    }
     function mudarQuantidadeItemDoCarrinho (
         cartItemId:number,
         type: 'onAumentar' | 'onDiminuir'){
@@ -89,7 +93,7 @@ useEffect (() => {
             cartItensTotal,
             addCoffeeNoCarrinho,
              mudarQuantidadeItemDoCarrinho,
-             removeCartItem}}>
+             removeCartItem,cleanCart}}>
             {children}
         </CartContext.Provider>
     )}

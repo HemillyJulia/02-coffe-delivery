@@ -5,6 +5,8 @@ import { CompleteOrderContainer } from "./style";
 import * as zod from 'zod'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {useForm, FormProvider} from 'react-hook-form'
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../../hooks/useCart";
 
 enum PaymentMethods {
     credit="credit",
@@ -35,8 +37,15 @@ export function CompleteOrder (){
         resolver: zodResolver(confirmOrderFormValidation)
     })
 const {handleSubmit}=confirmOrderForm
+
+const navigate = useNavigate()
+const {cleanCart} = useCart()
 function handleConfirmOrder (data:ConfirmOrderFormData){
-console.log(data)
+    navigate("/orderconfirmed",{
+        state:data
+    })
+    cleanCart()
+
 }
     return (
         <FormProvider {...confirmOrderForm}>
@@ -46,4 +55,8 @@ console.log(data)
         </CompleteOrderContainer >
         </FormProvider>
     )
+}
+
+function cleanCart() {
+    throw new Error("Function not implemented.");
 }
