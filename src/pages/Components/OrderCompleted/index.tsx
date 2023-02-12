@@ -52,10 +52,9 @@ export function OrderConfirmed (){
           iconBg={colors["brand-yellow"]}
           text={
             <RegularText>
-             Previsão de entrega <br/>
-              <strong>20min - 30min</strong>
-              Farrapos - Porto Alegre, RS
-            </RegularText>
+             Previsão de entrega: <br/>
+              <strong>20 min - 30 min</strong>
+             </RegularText>
           }
           />
             <IconesBeneficios
@@ -63,7 +62,7 @@ export function OrderConfirmed (){
           iconBg={colors["brand-yellow-dark"]}
           text={
             <RegularText>
-            Pagamento na entrega
+            Pagamento na entrega:<br/>
             <strong>{paymentMethods[state.paymentMethod].label}</strong>
             </RegularText>
           }
